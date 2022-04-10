@@ -1,0 +1,41 @@
+int main()
+{
+	template <typename T>
+	void swap(T & a, T & b)
+	{
+		T temp = a;
+		a = b;
+		b = temp;
+	}#include <iostream>
+
+}
+
+template <class T, class Predicate> size_t count_if(T first, T last, Predicate pred)
+{
+	size_t count;
+	for (count = 0; first != last; ++first)
+		if (pred(*first))
+			++count;
+	return count;
+}
+
+bool odd(int val) { return val % 2; }
+
+template <typename T> void print(T* first, T* last)
+{
+	std::cout << std::endl;
+	for (; first != last; ++first)
+		std::cout << *first << " ";
+	std::cout << std::endl;
+}
+
+int main()
+{
+	int arr[] = { 1, 2 ,3 ,4 , 5 };
+	const size_t size = sizeof(arr) / sizeof(arr[0]);
+
+	print(arr, arr + size);
+	std::cout << "Coutn odd = " << count_if(arr, arr + size, odd) << std::endl
+		<< "Count Even = " << count_if(arr, arr + size, [](int val) { return !(val % 2); }) << std::endl;
+	return 0;
+}
